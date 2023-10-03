@@ -22,6 +22,10 @@ class Question(db.Model):
 def index():
     return render_template('mainBody.html')
 
+@app.route('/question')
+def question():
+    return render_template('Question.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 
