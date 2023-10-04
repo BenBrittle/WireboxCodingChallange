@@ -34,7 +34,7 @@ def backEnd():
         newQuestion = request.form['add question']
         newMultiAnswer = request.form['add all answers']
         newAnswer = request.form['add answer']
-        return newQuestion, newMultiAnswer, newAnswer
+        return newQuestion
     else:
         return render_template('backEnd.html')
 
