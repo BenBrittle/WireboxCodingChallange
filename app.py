@@ -31,7 +31,7 @@ def question():
 @app.route('/backend', methods=['POST','GET'])
 def backEnd():
     if request.method == 'POST':
-        newQuestion = request.form['question']
+        newQuestion = request.form['add question']
         newMultiAnswer = request.form['AllAnswers']
         newAnswer = request.form['answer']
         print(newAnswer, newMultiAnswer, newQuestion)
