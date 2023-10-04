@@ -22,7 +22,8 @@ def index():
 @app.route('/question', methods=['POST','GET'])
 def question():
     if request.method == 'POST':
-        return 'Hello' 
+        submitted_answer = request.form['answer']
+        return submitted_answer
     else:
         return render_template('Question.html')
 
