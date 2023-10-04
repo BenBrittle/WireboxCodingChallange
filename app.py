@@ -22,7 +22,7 @@ def index():
 @app.route('/question', methods=['POST','GET'])
 def question():
     if request.method == 'POST':
-        return 'Hello'
+        print('Hello') 
     else:
         return render_template('Question.html')
 
