@@ -19,7 +19,7 @@ class Question(db.Model):
 def index():
     return render_template('mainBody.html')
 
-@app.route('/question')
+@app.route('/question', methods=['POST','GET'])
 def question():
     if request.method == 'POST':
         return 'Hello'
