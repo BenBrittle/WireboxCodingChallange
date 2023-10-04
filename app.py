@@ -36,12 +36,9 @@ def addQuestion():
         newAnswer = request.form['add answer']
         newRow = Question(Question=newQuestion, Answers=newMultiAnswer, Correct_Answer=newAnswer)
 
-        try:
-            db.session.add(newRow)
-            db.session.commit()
-            
-        except:
-            return 'There was an error adding question'
+
+        db.session.add(newRow)
+        db.session.commit()
         return redirect('/viewQuestions')
 
     else:
