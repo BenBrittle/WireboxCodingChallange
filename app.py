@@ -15,7 +15,7 @@ class Question(db.Model):
         return '<Task %r>' % self.id
 
 
-@app.route('/', methods=['POST','GET'])
+@app.route('/')
 def index():
     return render_template('mainBody.html')
 
