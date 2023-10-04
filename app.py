@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy 
 
 app = Flask(__name__)
@@ -21,7 +21,11 @@ def index():
 
 @app.route('/question')
 def question():
-    return render_template('Question.html')
+    if request.method == 'POST':
+        return 'Hello'
+    else:
+        return render_template('Question.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
