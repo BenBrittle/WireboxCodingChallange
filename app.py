@@ -25,7 +25,8 @@ def question():
         submitted_answer = request.form['answer']
         return submitted_answer
     else:
-        return render_template('Question.html')
+        questionvar = Question.query.get(0)
+        return render_template('Question.html', Question = questionvar)
 
 
 if __name__ == '__main__':
