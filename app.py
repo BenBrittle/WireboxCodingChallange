@@ -15,11 +15,11 @@ class Question(db.Model):
         return '<Task %r>' % self.id
 
 
-@app.route('/', methods=['POST','GET'])
+@app.route('/')
 def index():
     return render_template('mainBody.html')
 
-@app.route('/question')
+@app.route('/question', methods=['POST','GET'])
 def question():
     if request.method == 'POST':
         return 'Hello' 
