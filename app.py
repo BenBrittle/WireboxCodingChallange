@@ -28,6 +28,13 @@ def question():
         questionvar = Question.query.get(0)
         return render_template('Question.html', Question = questionvar)
 
+@app.route('/backend', methods=['POST','GET'])
+def backEnd():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('backEnd.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
