@@ -19,7 +19,7 @@ class Question(db.Model):
 def index():
     return render_template('mainBody.html')
 
-@app.route('/question', methods=['POST', 'GET'])
+@app.route('/question')
 def question():
     return render_template('Question.html')
 
