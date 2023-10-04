@@ -39,7 +39,7 @@ def addQuestion():
         try:
             db.session.add(newRow)
             db.session.commit()
-            return redirect('/viewQuestion')
+            return redirect('/viewQuestions')
         except:
             return 'There was an error adding question'
 
