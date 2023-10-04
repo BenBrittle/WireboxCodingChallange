@@ -39,10 +39,10 @@ def addQuestion():
         try:
             db.session.add(newRow)
             db.session.commit()
-            return redirect('/viewQuestions')
+            
         except:
             return 'There was an error adding question'
-
+        return redirect('/viewQuestions')
 
     else:
         return render_template('backEnd.html')
