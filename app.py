@@ -28,14 +28,15 @@ def question():
         questionvar = Question.query.get(0)
         return render_template('Question.html', Question = questionvar)
 
-@app.route('/backend')
+@app.route('/backend', methods=['POST','GET'])
 def backEnd():
-    return render_template('backEnd.html')
-
-@app.route('/addQuestion', methods=['POST'])
-def addQuestion():
     if request.method == 'POST':
-        pass
+        newQuestion = request.form['question']
+        newMultiAnswer = request.form['AllAnswers']
+        newAnswer = request.form['answer']
+        print(newAnswer, newMultiAnswer, newQuestion)
+    else:
+        return render_template('backEnd.html')
 
 
 if __name__ == '__main__':
