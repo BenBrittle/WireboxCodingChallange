@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy 
 
 app = Flask(__name__)
@@ -28,15 +28,29 @@ def question():
         questionvar = Question.query.get(0)
         return render_template('Question.html', Question = questionvar)
 
-@app.route('/backend', methods=['POST','GET'])
-def backEnd():
+@app.route('/addQuestion', methods=['POST','GET'])
+def addQuestion():
     if request.method == 'POST':
         newQuestion = request.form['add question']
         newMultiAnswer = request.form['add all answers']
         newAnswer = request.form['add answer']
-        return newQuestion
+        newRow = Question(Question=newQuestion, Answers=newMultiAnswer, Correct_Answer=newAnswer)
+
+        try:
+            db.session.add(newRow)
+            db.session.commit()
+            return redirect('/viewQuestion')
+        except:
+            return 'There was an error adding question'
+
+
     else:
         return render_template('backEnd.html')
+
+@app.route('/viewQuestions')
+def viewQuestions():
+    questions = Question.query.order_by(Question.id).all()
+    return render_template('viewQuestions.html', questions=questions)
 
 
 if __name__ == '__main__':
