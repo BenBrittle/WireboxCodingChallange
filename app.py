@@ -28,12 +28,14 @@ def question():
         questionvar = Question.query.get(0)
         return render_template('Question.html', Question = questionvar)
 
-@app.route('/backend', methods=['POST','GET'])
+@app.route('/backend')
 def backEnd():
+    return render_template('backEnd.html')
+
+@app.route('/addQuestion', methods=['POST'])
+def addQuestion():
     if request.method == 'POST':
         pass
-    else:
-        return render_template('backEnd.html')
 
 
 if __name__ == '__main__':
