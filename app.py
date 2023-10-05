@@ -26,8 +26,10 @@ def question():
         submitted_answer = request.form['answer']
         return submitted_answer
     else:
-        randomQuestion = Question.query.order_by(Question.id).all()
-        randomQuestion = randomQuestion
+        randomQuestion=[]
+        AllQuestion = Question.query.order_by(Question.id).all()
+        for x in AllQuestion:
+            randomQuestion.append(x.id)
         questionvar = Question.query.get(1)
         return render_template('Question.html', Question = randomQuestion)
 
