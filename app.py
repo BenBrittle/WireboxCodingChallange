@@ -27,7 +27,7 @@ def question():
     else:
         questionvar = db.session.query(1)
         #  return render_template('Question.html', Question = questionvar)
-        return questionvar
+        return questionvar.Question
 
 @app.route('/addQuestion', methods=['POST','GET'])
 def addQuestion():
