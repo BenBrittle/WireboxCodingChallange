@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy 
-from sqlalchemy.sql.expression import func, select
+import random
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -30,8 +30,9 @@ def question():
         AllQuestion = Question.query.order_by(Question.id).all()
         for x in AllQuestion:
             randomQuestion.append(x.id)
-        questionvar = Question.query.get(1)
-        return render_template('Question.html', Question = randomQuestion)
+        
+        questionvar = Question.query.get(random.choices(randomQuestion))
+        return render_template('Question.html', Question = questionvar)
 
 
 @app.route('/addQuestion', methods=['POST','GET'])
