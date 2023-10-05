@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy 
+from sqlalchemy.sql.expression import func, select
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -25,8 +26,11 @@ def question():
         submitted_answer = request.form['answer']
         return submitted_answer
     else:
-        questionvar = Question.query.order_by(Question.id).get(1)
-        return render_template('Question.html', Question = questionvar)
+        randomQuestion = Question.query.order_by(Question.id).all()
+        randomQuestion = randomQuestion.id
+        questionvar = Question.query.get(1)
+        return render_template('Question.html', Question = randomQuestion)
+
 
 @app.route('/addQuestion', methods=['POST','GET'])
 def addQuestion():
