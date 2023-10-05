@@ -25,7 +25,7 @@ def question():
         submitted_answer = request.form['answer']
         return submitted_answer
     else:
-        questionvar = db.session.get(Question, 0)
+        questionvar = db.session.get(Answers, 0)
         return render_template('Question.html', Question = questionvar)
 
 @app.route('/addQuestion', methods=['POST','GET'])
