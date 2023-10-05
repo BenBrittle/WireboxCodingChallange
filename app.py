@@ -27,7 +27,7 @@ def question():
         return submitted_answer
     else:
         randomQuestion = Question.query.order_by(Question.id).all()
-        randomQuestion = randomQuestion.id
+        randomQuestion = randomQuestion
         questionvar = Question.query.get(1)
         return render_template('Question.html', Question = randomQuestion)
 
