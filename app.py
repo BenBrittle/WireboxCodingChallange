@@ -56,7 +56,8 @@ def delete(id):
     try:
         db.session.delete(Question_to_delete)
         db.session.commit()
-        return redirect('/viewQuestions')
+        #return redirect('/viewQuestions')
+        return id
     except:
         return 'there was a problem deleting that question'
 
