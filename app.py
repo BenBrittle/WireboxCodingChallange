@@ -25,7 +25,7 @@ def question():
         submitted_answer = request.form['answer']
         return submitted_answer
     else:
-        questionvar = db.session.query(Question).get(1)
+        questionvar = Question.query.get(1)
         #  return render_template('Question.html', Question = questionvar)
         return questionvar
 
