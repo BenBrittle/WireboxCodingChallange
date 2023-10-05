@@ -20,6 +20,7 @@
                     <td>{{ questions.Question }}</td>
                     <td>{{ questions.Answers }}</td>
                     <td>{{ questions.Correct_Answer }}</td>
+                    <td>{{question.id}}</td>
                     <td><form action="http://localhost:5000/delete/{{ questions.id }}">
                         <input type="submit" value="Delete" >
                     </td>
