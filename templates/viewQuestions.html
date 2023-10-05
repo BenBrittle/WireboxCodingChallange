@@ -20,6 +20,9 @@
                     <td>{{ questions.Question }}</td>
                     <td>{{ questions.Answers }}</td>
                     <td>{{ questions.Correct_Answer }}</td>
+                    <td><form action="/delete/{{ task.id }}">
+                        <input type="submit" value="Delete" >
+                    </td>
                 </tr>
             {% endfor %}
         </table>

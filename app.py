@@ -49,6 +49,16 @@ def viewQuestions():
     questions = Question.query.order_by(Question.id).all()
     return render_template('viewQuestions.html', questions=questions)
 
+@app.route('/delete/<unt:id>')
+def delete(id):
+    Question_to_delete = Question.query.get_or_404(id)
+
+    try:
+        db.session.delete(Question_to_delete)
+        db.session.commit()
+        return redirect('/viewQuestions')
+    except:
+        return 'there was a problem deleting that question'
 
 if __name__ == '__main__':
     app.run(debug=True)
