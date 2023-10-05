@@ -25,7 +25,7 @@ def question():
         submitted_answer = request.form['answer']
         return submitted_answer
     else:
-        questionvar = db.get_or_404(Question, 1)
+        questionvar = db.get_or_404(1)
         return render_template('Question.html', Question = questionvar)
 
 @app.route('/addQuestion', methods=['POST','GET'])
