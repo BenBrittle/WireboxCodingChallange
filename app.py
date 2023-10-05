@@ -27,7 +27,7 @@ def question():
     else:
         questionvar = Question.query.get(1)
         #  return render_template('Question.html', Question = questionvar)
-        return questionvar.Question
+        return questionvar
 
 @app.route('/addQuestion', methods=['POST','GET'])
 def addQuestion():
