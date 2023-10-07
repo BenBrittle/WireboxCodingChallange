@@ -46,9 +46,12 @@ def question():
         session['Score'][1] += 1
         session.modified = True
      
-    questionList = session['randomQuestion']
-    questionvar = Question.query.get(random.choices(questionList))
-    return render_template('Question.html', Question = questionvar, score = session['Score'])
+    if session['Score'][1] == 5:
+        return 'done'
+    else:
+        questionList = session['randomQuestion']
+        questionvar = Question.query.get(random.choices(questionList))
+        return render_template('Question.html', Question = questionvar, score = session['Score'])
 
 
 @app.route('/addQuestion', methods=['POST','GET'])
