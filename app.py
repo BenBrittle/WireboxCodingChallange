@@ -46,7 +46,7 @@ def question():
      
     questionList = session['randomQuestion']
     questionvar = Question.query.get(random.choices(questionList))
-    return render_template('Question.html', Question = questionvar, score = session['score'])
+    return render_template('Question.html', Question = questionvar, score = session['Score'])
 
 
 @app.route('/addQuestion', methods=['POST','GET'])
