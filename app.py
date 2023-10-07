@@ -6,8 +6,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
-global current_Question 
-current_Question = ''
+
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -18,26 +17,25 @@ class Question(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
 
+randomQuestion=[]
+AllQuestion = Question.query.order_by(Question.id).all()
+for x in AllQuestion:
+    randomQuestion.append(x.id)
 
 @app.route('/')
 def index():
     return render_template('mainBody.html')
 
-@app.route('/question', methods=['POST','GET'])
+@app.route('/question', methods=['POST','GET'], )
 def question():
     
     if request.method == 'POST':
         submitted_answer = request.form['answer']
-        if submitted_answer == current_Question.Correct_Answer:
+        if submitted_answer == request.form['correct answer']:
             return 'correct'
     else:
-        randomQuestion=[]
-        AllQuestion = Question.query.order_by(Question.id).all()
-        for x in AllQuestion:
-            randomQuestion.append(x.id)
-        
+        global randomQuestion   
         questionvar = Question.query.get(random.choices(randomQuestion))
-        current_Question = questionvar
         return render_template('Question.html', Question = questionvar)
 
 
