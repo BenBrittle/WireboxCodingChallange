@@ -1,9 +1,13 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy 
+import random
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
+app.secret_key = 'q93vOFhMPulYjSk0'
+
+
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -15,18 +19,40 @@ class Question(db.Model):
         return '<Task %r>' % self.id
 
 
+
 @app.route('/')
 def index():
+    session['Score'] = [0, 0]
+    session['randomQuestion']=[]
+    AllQuestion = Question.query.order_by(Question.id).all()
+    for x in AllQuestion:
+        session['randomQuestion'].append(x.id)
+    session.modified = True
+
     return render_template('mainBody.html')
 
-@app.route('/question', methods=['POST','GET'])
+@app.route('/question', methods=['POST','GET'], )
 def question():
+    
     if request.method == 'POST':
         submitted_answer = request.form['answer']
-        return submitted_answer
+        CompletedQuestion = Question.query.get(request.form['correct answer'])
+        if int(submitted_answer) == CompletedQuestion.Correct_Answer:
+            session['Score'][0] += 1
+            session.modified = True
+        else:
+            pass
+        session['randomQuestion'].remove(CompletedQuestion.id)
+        session['Score'][1] += 1
+        session.modified = True
+     
+    if session['Score'][1] == 5:
+        return 'done'
     else:
-        questionvar = Question.query.get(0)
-        return render_template('Question.html', Question = questionvar)
+        questionList = session['randomQuestion']
+        questionvar = Question.query.get(random.choices(questionList))
+        return render_template('Question.html', Question = questionvar, score = session['Score'])
+
 
 @app.route('/addQuestion', methods=['POST','GET'])
 def addQuestion():
@@ -49,7 +75,20 @@ def viewQuestions():
     questions = Question.query.order_by(Question.id).all()
     return render_template('viewQuestions.html', questions=questions)
 
+@app.route('/delete/<int:id>')
+def delete(id):
+    Question_to_delete = Question.query.get_or_404(id)
+
+    try:
+        db.session.delete(Question_to_delete)
+        db.session.commit()
+        return redirect('/viewQuestions')
+
+    except:
+        return 'there was a problem deleting that question'
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
 
