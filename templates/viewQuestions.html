@@ -23,11 +23,13 @@
                     <td>{{questions.id}}</td>
                     <td><form action="http://localhost:5000/delete/{{ questions.id }}">
                         <input type="submit" value="Delete" >
+                        </form>
                     </td>
                 </tr>
             {% endfor %}
         </table>
         <form action="http://localhost:5000/addQuestion">
             <input type="submit" value="add question" >
+        </form>
     </body>
 </html>
