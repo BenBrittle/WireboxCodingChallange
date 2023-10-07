@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Questions</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        <p>{{ Question.Question }}</p>
-        <p>{{ Question.Answers }}</p>
-        <form action="/question", method="POST">
-            <input type="number" name="answer" id="answer">
-            <input type="hidden" name="correct answer" id="correct answer" value={{ Question.id }}>
-            <input type="submit" value="Enter Answer">
-        </form>
-        <p>Score: {{score[0]}}/{{score[1]}}</p>
-        
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Question</title>
+    <style>
+        body {
+          background-image: url('https://images8.alphacoders.com/806/806076.jpg');align-content: center;
+        }
+        h1 {text-align:center;font-size:300%;font-family: 'Garamond', cursive;;color:whitesmoke;}
+        p1 {text-align:center;color:whitesmoke;font-size: 150%;font-family: 'Garamond';}
+    </style>
+</head>
+<body>    
+  <h1 >THE QUESTIONS</h1>: 
+  <p>Try your best :)</p>:::
+  <p>{{ Question.Question }}</p>
+    <p>{{ Question.Answers }}</p>
+      <form action="/question", method="POST">
+        <input type="number" name="answer" id="answer">
+        <input type="hidden" name="correct answer" id="correct answer" value={{ Question.id }}>
+        <input type="submit" value="Enter Answer">
+      </form>
+    <p>Score: {{score[0]}}/{{score[1]}}</p>
+</body>
 </html>

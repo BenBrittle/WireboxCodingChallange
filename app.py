@@ -29,7 +29,7 @@ def index():
         session['randomQuestion'].append(x.id)
     session.modified = True
 
-    return render_template('design1.html')
+    return render_template('IntroPage.html')
 
 @app.route('/question', methods=['POST','GET'], )
 def question():
@@ -47,7 +47,7 @@ def question():
         session.modified = True
      
     if session['Score'][1] == 5:
-        return 'done'
+        return render_template('Results.html', score = session['Score'])
     else:
         questionList = session['randomQuestion']
         questionvar = Question.query.get(random.choices(questionList))
