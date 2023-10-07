@@ -41,7 +41,7 @@ def question():
             session['Score'][0] += 1
         else:
             pass
-        session['randomQuestion'].remove(CompletedQuestion)
+        session['randomQuestion'].remove(CompletedQuestion.id)
         session['Score'][1] += 1
      
     questionList = session['randomQuestion']
