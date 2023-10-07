@@ -36,7 +36,7 @@ def question():
     
     if request.method == 'POST':
         submitted_answer = request.form['answer']
-        CompletedQuestion = Question.session.get(request.form['correct answer'])
+        CompletedQuestion = Question.query.get(request.form['correct answer'])
         if int(submitted_answer) == CompletedQuestion.Correct_Answer:
             session['Score'][0] += 1
             session.modified = True
@@ -47,7 +47,7 @@ def question():
         session.modified = True
      
     questionList = session['randomQuestion']
-    questionvar = Question.session.get(random.choices(questionList))
+    questionvar = Question.query.get(random.choices(questionList))
     return render_template('Question.html', Question = questionvar, score = session['Score'])
 
 
