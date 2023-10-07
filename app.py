@@ -37,7 +37,7 @@ def question():
     if request.method == 'POST':
         submitted_answer = request.form['answer']
         CompletedQuestion = request.form['correct answer']
-        if submitted_answer == CompletedQuestion.Correct_Answer:
+        if submitted_answer == Question.query.get(CompletedQuestion.Correct_Answer):
             session['Score'][0] += 1
         else:
             pass
