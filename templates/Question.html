@@ -12,7 +12,7 @@
         <p>{{ Question.Answers }}</p>
         <form action="/question", method="POST">
             <input type="text" name="answer" id="answer">
-            <input type="hidden" name="correct answer" id="correct answer" value='{{ Question.Correct_Answer }}'>
+            <input type="hidden" name="correct answer" id="correct answer" value='{{ Question }}'>
             <input type="submit" value="Enter Answer">
         </form>
         <form action="http://localhost:5000/question">

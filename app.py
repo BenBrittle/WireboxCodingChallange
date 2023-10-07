@@ -22,11 +22,13 @@ class Question(db.Model):
 
 @app.route('/')
 def index():
+    session['Score'] = [0, 0]
     session['randomQuestion']=[]
     AllQuestion = Question.query.order_by(Question.id).all()
     for x in AllQuestion:
         session['randomQuestion'].append(x.id)
     session.modified = True
+
     return render_template('mainBody.html')
 
 @app.route('/question', methods=['POST','GET'], )
@@ -34,12 +36,17 @@ def question():
     
     if request.method == 'POST':
         submitted_answer = request.form['answer']
-        if submitted_answer == request.form['correct answer']:
-            return 'correct'
-    else:   
-        questionList = session['randomQuestion']
-        questionvar = Question.query.get(random.choices(questionList))
-        return render_template('Question.html', Question = questionvar)
+        CompletedQuestion = request.form['correct answer']
+        if submitted_answer == CompletedQuestion.Correct_Answer:
+            session['Score'][0] += 1
+        else:
+            pass
+        session['randomQuestion'].remove(CompletedQuestion)
+        session['Score'][1] += 1
+     
+    questionList = session['randomQuestion']
+    questionvar = Question.query.get(random.choices(questionList))
+    return render_template('Question.html', Question = questionvar, score = session['score'])
 
 
 @app.route('/addQuestion', methods=['POST','GET'])
