@@ -71,8 +71,9 @@ def delete(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
-randomQuestion=[]
-AllQuestion = Question.query.order_by(Question.id).all()
-for x in AllQuestion:
-    randomQuestion.append(x.id)
+    randomQuestion=[]
+    AllQuestion = Question.query.order_by(Question.id).all()
+    for x in AllQuestion:
+        randomQuestion.append(x.id)
+
 
