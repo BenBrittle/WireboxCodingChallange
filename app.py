@@ -6,7 +6,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
-
+global current_Question 
+current_Question = ''
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,7 +25,7 @@ def index():
 
 @app.route('/question', methods=['POST','GET'])
 def question():
-    current_Question = ''
+    
     if request.method == 'POST':
         submitted_answer = request.form['answer']
         if submitted_answer == current_Question.Correct_Answer:
@@ -37,7 +38,7 @@ def question():
         
         questionvar = Question.query.get(random.choices(randomQuestion))
         current_Question = questionvar
-        return render_template('Question.html', Question = random.choices(AllQuestion))
+        return render_template('Question.html', Question = questionvar)
 
 
 @app.route('/addQuestion', methods=['POST','GET'])
