@@ -29,7 +29,7 @@ def index():
         session['randomQuestion'].append(x.id)
     session.modified = True
 
-    return render_template('mainBody.html')
+    return render_template('design1.html')
 
 @app.route('/question', methods=['POST','GET'], )
 def question():
