@@ -36,7 +36,7 @@ def question():
     
     if request.method == 'POST':
         submitted_answer = request.form['answer']
-        CompletedQuestion = Question.query.get(request.form['correct answer'])
+        CompletedQuestion = Question.session.get(request.form['correct answer'])
         if submitted_answer == CompletedQuestion.Correct_Answer:
             session['Score'][0] += 1
             session.modified = True
