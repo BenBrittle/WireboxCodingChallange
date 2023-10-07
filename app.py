@@ -18,16 +18,16 @@ class Question(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
 
-AllQuestion = Question.query.order_by(Question.id).all()
-for x in AllQuestion:
-    session['randomQuestion'].append(x.id)
-session.modified = True
+
 
 @app.route('/')
 def index():
     session['Score'] = [0, 0]
     session['randomQuestion']=[]
-
+    AllQuestion = Question.query.order_by(Question.id).all()
+    for x in AllQuestion:
+        session['randomQuestion'].append(x.id)
+    session.modified = True
 
     return render_template('mainBody.html')
 
@@ -43,6 +43,7 @@ def question():
             pass
         session['randomQuestion'].remove(CompletedQuestion.id)
         session['Score'][1] += 1
+        session.modified = True
      
     questionList = session['randomQuestion']
     questionvar = Question.query.get(random.choices(questionList))
