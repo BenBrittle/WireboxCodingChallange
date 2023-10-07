@@ -39,6 +39,7 @@ def question():
         CompletedQuestion = Question.query.get(request.form['correct answer'])
         if submitted_answer == CompletedQuestion.Correct_Answer:
             session['Score'][0] += 1
+            session.modified = True
         else:
             pass
         session['randomQuestion'].remove(CompletedQuestion.id)
