@@ -25,6 +25,7 @@ def index():
     AllQuestion = Question.query.order_by(Question.id).all()
     for x in AllQuestion:
         session.get['randomQuestion'].append(x.id)
+    session.modified = True
     return render_template('mainBody.html')
 
 @app.route('/question', methods=['POST','GET'], )
