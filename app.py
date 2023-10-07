@@ -37,7 +37,7 @@ def question():
         if submitted_answer == request.form['correct answer']:
             return 'correct'
     else:   
-        questionList = session.get['randomQuestion']
+        questionList = session['randomQuestion']
         questionvar = Question.query.get(random.choices(questionList))
         return render_template('Question.html', Question = questionvar)
 
