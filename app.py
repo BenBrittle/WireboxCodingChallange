@@ -26,7 +26,8 @@ def index():
 def question():
     if request.method == 'POST':
         submitted_answer = request.form['answer']
-        # if submitted_answer == 
+        if submitted_answer == current_Question.Correct_Answer:
+            return 'correct'
     else:
         randomQuestion=[]
         AllQuestion = Question.query.order_by(Question.id).all()
@@ -34,7 +35,8 @@ def question():
             randomQuestion.append(x.id)
         
         questionvar = Question.query.get(random.choices(randomQuestion))
-        return render_template('Question.html', Question = random.choices(AllQuestion))
+        current_Question = questionvar
+        return render_template('Question.html', Question = questionvar)
 
 
 @app.route('/addQuestion', methods=['POST','GET'])
