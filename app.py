@@ -17,10 +17,7 @@ class Question(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
 
-randomQuestion=[]
-AllQuestion = Question.query.order_by(Question.id).all()
-for x in AllQuestion:
-    randomQuestion.append(x.id)
+
 
 @app.route('/')
 def index():
@@ -74,4 +71,8 @@ def delete(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+randomQuestion=[]
+AllQuestion = Question.query.order_by(Question.id).all()
+for x in AllQuestion:
+    randomQuestion.append(x.id)
 
