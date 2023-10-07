@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy 
 import random
 
@@ -21,6 +21,10 @@ class Question(db.Model):
 
 @app.route('/')
 def index():
+    session['randomQuestion']=[]
+    AllQuestion = Question.query.order_by(Question.id).all()
+    for x in AllQuestion:
+        session.get['randomQuestion'].append(x.id)
     return render_template('mainBody.html')
 
 @app.route('/question', methods=['POST','GET'], )
@@ -30,9 +34,8 @@ def question():
         submitted_answer = request.form['answer']
         if submitted_answer == request.form['correct answer']:
             return 'correct'
-    else:
-        global randomQuestion   
-        questionvar = Question.query.get(random.choices(randomQuestion))
+    else:   
+        questionvar = Question.query.get(random.choices(session.get['randomQuestion']))
         return render_template('Question.html', Question = questionvar)
 
 
@@ -71,9 +74,6 @@ def delete(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
-    randomQuestion=[]
-    AllQuestion = Question.query.order_by(Question.id).all()
-    for x in AllQuestion:
-        randomQuestion.append(x.id)
+
 
 
