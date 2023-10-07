@@ -5,6 +5,7 @@ import random
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
+app.secret_key = 'q93vOFhMPulYjSk0'
 
 
 
