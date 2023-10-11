@@ -88,7 +88,7 @@ def delete(id):
         return 'there was a problem deleting that question'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 
